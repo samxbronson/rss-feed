@@ -96,23 +96,23 @@
 
     const sanitizeText = html => html.replace(/<[^>]*>?/gm, '').slice(0, 140) + '...';
 
-    const createFeedHTML = posts => 
+    const createFeedHTML = posts => `
       <div class="rss-grid">
         ${posts.map(item => {
           const thumb = item.enclosure?.link || '';
-          return 
+          return `
             <div class="rss-item">
-              ${thumb ? <img src="${thumb}" alt="Thumbnail"> : ''}
+              ${thumb ? `<img src="${thumb}" alt="Thumbnail">` : ''}
               <a href="${item.link}" target="_blank">
                 <h3>${item.title}</h3>
               </a>
               <p>${new Date(item.pubDate).toLocaleDateString()}</p>
               <p>${sanitizeText(item.description)}</p>
             </div>
-          ;
+          `;
         }).join('')}
       </div>
-    ;
+    `;
 
     fetch("https://api.rss2json.com/v1/api.json?rss_url=https://rss.beehiiv.com/feeds/VgH4gQ2UIc.xml")
       .then(res => res.json())
