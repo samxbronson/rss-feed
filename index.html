@@ -13,6 +13,7 @@
       font-family: 'Roboto', sans-serif;
       background: #000;
       color: #fff;
+      overflow: hidden; /* ✅ Prevent scrollbars inside iframe */
     }
 
     .rss-container {
@@ -83,7 +84,7 @@
           return `
             <div class="rss-item">
               ${thumb ? `<img src="${thumb}" alt="Thumbnail">` : ''}
-              <a href="${item.link}" target="_blank">
+              <a href="${item.link}" target="_blank" rel="noopener noreferrer">
                 <h3>${item.title}</h3>
               </a>
               <p>${new Date(item.pubDate).toLocaleDateString()}</p>
