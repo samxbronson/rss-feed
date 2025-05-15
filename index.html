@@ -97,7 +97,7 @@
     fetch("https://api.rss2json.com/v1/api.json?rss_url=https://rss.beehiiv.com/feeds/VgH4gQ2UIc.xml")
       .then(res => res.json())
       .then(data => {
-        const posts = data.items.slice(0, 6);
+        const posts = data.items.slice(0, 100);
         container.innerHTML = createFeedHTML(posts);
       })
       .catch(() => {
